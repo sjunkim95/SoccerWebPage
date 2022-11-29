@@ -28,7 +28,7 @@
 //                String title = item.selectFirst("title").text();
 //                String href = item.selectFirst("link").text();
 //                
-//                String tag = "<a hre='" + href + "'>" + title + "</a><br>";
+//                String tag = "<a href='" + href + "'>" + title + "</a><br>";
 //                bw.write(tag);
 //                bw.newLine();
 //                
