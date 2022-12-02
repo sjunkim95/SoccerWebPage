@@ -33,6 +33,14 @@ public class ViewController {
         return "/view/example";
     }
     
+    @GetMapping("/info")
+    public String info() {
+        log.info("info()");
+        
+        return "/view/info";
+    }
+    
+    
     
 }
 

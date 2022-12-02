@@ -71,7 +71,7 @@
             
             <!-- 옆에 이미지 넣는다면 <i class="fas fa-fw fa-chart-area"></i> -->
             <!-- Nav Item - Charts -->
-            <li class="nav-item"><a class="nav-link" href="#"> 
+            <li class="nav-item"><a class="nav-link" th:href="@{ /view/info }"> 
             <i class="fas fa-fw fa-chart-area"></i> <span>공지사항</span></a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">
@@ -111,8 +111,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="/view/login">Login</a>
-                        <a class="collapse-item" href="/view/example">example</a>
+                        <a class="collapse-item" th:href="@{/view/login}">Login</a>
+                        <a class="collapse-item" th:href="@{/view/example}">example</a>
                         <a class="collapse-item"
                             href="forgot-password.html">Forgot
                             Password</a>
@@ -137,7 +137,7 @@
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2"
-                    src="img/undraw_rocket.svg" alt="...">
+                    th:src="@{/img/undraw_rocket.svg}" alt="...">
                 <p class="text-center mb-2">
                     <strong>SB Admin Pro</strong> is packed with premium
                     features, components, and more!
@@ -221,7 +221,7 @@
 
                         <!-- 로그인 버튼 -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="login.html" role="button"><i
+                            <a class="nav-link dropdown-toggle" th:href="@{/login.html}" role="button"><i
                                 class="bi bi-door-open">로그인</i> <!-- Counter - Alerts -->
                         </a> <!-- Dropdown - Alerts -->
                         </li>
@@ -247,7 +247,7 @@
                                     <div
                                         class="dropdown-list-image mr-3">
                                         <img class="rounded-circle"
-                                            src="img/undraw_profile_1.svg"
+                                            th:src="@{/img/undraw_profile_1.svg}"
                                             alt="...">
                                         <div
                                             class="status-indicator bg-success"></div>
@@ -266,7 +266,7 @@
                                     <div
                                         class="dropdown-list-image mr-3">
                                         <img class="rounded-circle"
-                                            src="img/undraw_profile_2.svg"
+                                            th:src="@{/img/undraw_profile_2.svg}"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -285,7 +285,7 @@
                                     <div
                                         class="dropdown-list-image mr-3">
                                         <img class="rounded-circle"
-                                            src="img/undraw_profile_3.svg"
+                                            th:src="@{/img/undraw_profile_3.svg}"
                                             alt="...">
                                         <div
                                             class="status-indicator bg-warning"></div>
@@ -337,7 +337,7 @@
                                 class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
                                     McGee</span> <img
                                 class="img-profile rounded-circle"
-                                src="img/undraw_profile.svg">
+                                th:src="@{/img/undraw_profile.svg}">
                         </a> <!-- Dropdown - User Information -->
                             <div
                                 class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
