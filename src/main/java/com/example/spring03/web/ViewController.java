@@ -13,9 +13,26 @@ public class ViewController {
     
     @GetMapping
     public String main(){
-        log.info("main()");
+        log.info("main()...");
 
         return "main";
     }
+    
+    @GetMapping("/login")
+    public String loginPage() {
+        log.info("login()");
+        
+        return "/view/login";
+        
+    }
+    
+    @GetMapping("/example")
+    public String example() {
+        log.info("example()");
+        
+        return "/view/example";
+    }
+    
+    
 }
 
