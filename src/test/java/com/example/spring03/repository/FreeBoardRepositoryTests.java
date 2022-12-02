@@ -27,8 +27,8 @@ public class FreeBoardRepositoryTests {
         //  (2) 엔터티가 테이블에 있는 경우(테이블에서 검색한 경우), update SQL 문장
         
         BoardFree entity = BoardFree.builder()
-                .title("Post2")
-                .content("Content2")
+                .title("Post3")
+                .content("Content3")
                 .author("admin")
                 .count(null)
                 .build();

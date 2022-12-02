@@ -12,7 +12,7 @@ public class HomeController {
     @GetMapping("/") // 요청 URL/방식 매핑. 
     public String home(Model model) {
         log.info("home()");
-        return "/view/main"; // View 이름 -> src/main/resources/templates/home.html 
+        return "view/main"; // View 이름 -> src/main/resources/templates/home.html 
         
     }
   

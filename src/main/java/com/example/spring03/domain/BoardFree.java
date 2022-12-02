@@ -39,7 +39,7 @@ public class BoardFree extends BaseTimeEntity {
     @Column(nullable = false)
     private String author;
     
-    private String count;
+    private Integer count;
     
     public BoardFree update(String title, String content) {
         this.title = title;
