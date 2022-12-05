@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    >
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
 
@@ -15,8 +14,8 @@
 <title>Soccer Web Page</title>
 
 <!-- Custom fonts for this template-->
-<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet"
-    type="text/css">
+<link th:href="@{/vendor/fontawesome-free/css/all.min.css}"
+    rel="stylesheet" type="text/css">
 <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
@@ -53,45 +52,45 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active"><a class="nav-link"
-                href="/"> <i
-                    class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
-            </li>
+                th:href="@{ /view/createBoard }"> <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>글쓰기</span></a></li>
             <li class="nav-item active"><a class="nav-link"
                 href="https://discord.gg/zAX3d5ek"> <i
-                    class="fas fa-fw fa-tachometer-alt"></i> <span>Community Discord</span></a>
-            </li>
+                    class="fas fa-fw fa-tachometer-alt"></i> <span>Community
+                        Discord</span></a></li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">게시판</div>
-            
+
             <!-- Nav Item 새로 만드는것. -->
-            
+
             <!-- 옆에 이미지 넣는다면 <i class="fas fa-fw fa-chart-area"></i> -->
             <!-- Nav Item - Charts -->
-            <li class="nav-item"><a class="nav-link" th:href="@{ /view/info }"> 
-            <i class="fas fa-fw fa-chart-area"></i> <span>공지사항</span></a>
+            <li class="nav-item"><a class="nav-link"
+                th:href="@{ /view/info }"> <i
+                    class="fas fa-fw fa-chart-area"></i> <span>공지사항</span></a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">
-            <span>자유게시판</span></a>
-            </li>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#">
-            <span>경기후기 게시판</span></a>
-            </li>
+                    <span>자유게시판</span>
+            </a></li>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">
-            <span>경기예상 게시판</span></a>
-            </li>
+                    <span>경기후기 게시판</span>
+            </a></li>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">
-            <span>가입인사 게시판</span></a>
+                    <span>경기예상 게시판</span>
+            </a></li>
             </li>
+            <li class="nav-item"><a class="nav-link" href="#">
+                    <span>가입인사 게시판</span>
+            </a></li>
 
-      
-            
+
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -104,16 +103,19 @@
                 href="#" data-toggle="collapse"
                 data-target="#collapsePages" aria-expanded="true"
                 aria-controls="collapsePages"> <i
-                    class="fas fa-fw fa-folder"></i> <span>관리자 게시판</span>
+                    class="fas fa-fw fa-folder"></i> <span>관리자
+                        게시판</span>
             </a>
                 <div id="collapsePages" class="collapse"
                     aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" th:href="@{ /view/login }">Login</a>
-                        <a class="collapse-item" th:href="@{/view/example}">example</a>
                         <a class="collapse-item"
+                            th:href="@{ /view/login }">Login</a> <a
+                            class="collapse-item"
+                            th:href="@{/view/example}">example</a> <a
+                            class="collapse-item"
                             th:href="forgot-password.html">Forgot
                             Password</a>
                         <div class="collapse-divider"></div>
@@ -219,111 +221,20 @@
                             </div>
                         </li>
 
-                        <!-- 로그인 버튼 -->
+                        <!-- 로그인 -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" th:href="@{/login.html}" role="button"><i
-                                class="bi bi-door-open">로그인</i> <!-- Counter - Alerts -->
-                        </a> <!-- Dropdown - Alerts -->
+                            <a class="nav-link dropdown-toggle"
+                            th:href="@{ /member/login }" role="button">
+                                <span>로그인</span> <!-- Counter - Alerts -->
+                        </a>
                         </li>
 
-                        <!-- Nav Item - Messages -->
+                        <!-- 회원가입 -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#"
-                            id="messagesDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i
-                                class="fas fa-envelope fa-fw"><span>요우</span></i> <!-- Counter - Messages -->
-                                <span
-                                class="badge badge-danger badge-counter">7</span>
-                        </a> <!-- Dropdown - Messages -->
-                            <div
-                                class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center</h6>
-                                <a
-                                    class="dropdown-item d-flex align-items-center"
-                                    href="#">
-                                    <div
-                                        class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            th:src="@{/img/undraw_profile_1.svg}"
-                                            alt="...">
-                                        <div
-                                            class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi
-                                            there! I am wondering if you
-                                            can help me with a problem
-                                            I've been having.</div>
-                                        <div class="small text-gray-500">Emily
-                                            Fowler · 58m</div>
-                                    </div>
-                                </a> <a
-                                    class="dropdown-item d-flex align-items-center"
-                                    href="#">
-                                    <div
-                                        class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            th:src="@{/img/undraw_profile_2.svg}"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I
-                                            have the photos that you
-                                            ordered last month, how
-                                            would you like them sent to
-                                            you?</div>
-                                        <div class="small text-gray-500">Jae
-                                            Chun · 1d</div>
-                                    </div>
-                                </a> <a
-                                    class="dropdown-item d-flex align-items-center"
-                                    href="#">
-                                    <div
-                                        class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            th:src="@{/img/undraw_profile_3.svg}"
-                                            alt="...">
-                                        <div
-                                            class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last
-                                            month's report looks great,
-                                            I am very happy with the
-                                            progress so far, keep up the
-                                            good work!</div>
-                                        <div class="small text-gray-500">Morgan
-                                            Alvarez · 2d</div>
-                                    </div>
-                                </a> <a
-                                    class="dropdown-item d-flex align-items-center"
-                                    href="#">
-                                    <div
-                                        class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div
-                                            class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am
-                                            I a good boy? The reason I
-                                            ask is because someone told
-                                            me that people say this to
-                                            all dogs, even if they
-                                            aren't good...</div>
-                                        <div class="small text-gray-500">Chicken
-                                            the Dog · 2w</div>
-                                    </div>
-                                </a> <a
-                                    class="dropdown-item text-center small text-gray-500"
-                                    href="#">Read More Messages</a>
-                            </div>
+                            <a class="nav-link dropdown-toggle"
+                            th:href="@{ /member/register }"
+                            role="button"> <span>회원가입</span> <!-- Counter - Alerts -->
+                        </a>
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -371,16 +282,13 @@
                 <!-- Page content: 메인 컨텐트가 삽입될 위치 -->
                 <div class="container-fluid" layout:fragment="content">
                 </div>
-                
-                
-                
+
+
+
 
             </div>
             <!-- End of Main Content -->
-            
-            <!-- example content: example 컨텐트가 삽입될 위치 -->
-                <div class="container-fluid" layout:fragment="example">
-                </div>
+
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">

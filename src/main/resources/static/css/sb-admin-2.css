@@ -10931,6 +10931,43 @@ form.user .btn-user {
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }
 
+.btn-kakao {
+  color: #fff;
+  background-color: #ea4335;
+  border-color: #fff;
+}
+
+.btn-kakao:hover {
+  color: #fff;
+  background-color: #e12717;
+  border-color: #e6e6e6;
+}
+
+.btn-kakao:focus, .btn-kakao.focus {
+  color: #fff;
+  background-color: #e12717;
+  border-color: #e6e6e6;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.btn-kakao.disabled, .btn-kakao:disabled {
+  color: #fff;
+  background-color: #ea4335;
+  border-color: #fff;
+}
+
+.btn-kakao:not(:disabled):not(.disabled):active, .btn-kakao:not(:disabled):not(.disabled).active,
+.show > .btn-kakao.dropdown-toggle {
+  color: #fff;
+  background-color: #d62516;
+  border-color: #dfdfdf;
+}
+
+.btn-kakao:not(:disabled):not(.disabled):active:focus, .btn-kakao:not(:disabled):not(.disabled).active:focus,
+.show > .btn-kakao.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
 .btn-facebook {
   color: #fff;
   background-color: #3b5998;
