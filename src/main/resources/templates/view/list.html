@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{ layout/layout }">
+
+<div layout:fragment="content">
+    <div class=" my-2">
+        <h1>공지사항</h1>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>수정시간</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="info : ${ list }">
+                <td th:text="${ info.id }"></td>
+                <td><a
+                    th:href="@{ /info/detail?id={id} (id = ${ info.id }) }"
+                    th:text="${ info.title }"></a></td>
+                <td th:text="${ info.author }"></td>
+                <td
+                    th:text="${ #temporals.format(info.modifiedTime, 'yyyy-MM-dd') }"></td>
+                <td th:text="${ info.clickCount }"></td>
+            </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+    <div>
+        <a th:href="@{/view/createBoard}"> <input class="btn btn-success"
+            type="submit" value="글쓰기" style="float: right" />
+        </a>
+    </div>
+</div>
+</html>

@@ -13,24 +13,29 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.example.spring03.domain.BaseTimeEntity;
+
 
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
-        LocalDateTime createdTime = LocalDateTime.now();
-        LocalDate onlyDate = LocalDate.now();
+       String URL = "https://sports.news.naver.com/wfootball/index";
+       
+       Document doc = null;
+       doc = Jsoup.connect(URL).get();
+       
+       Elements elem = doc.select("div[class=\"home_news\"]");
+       
+       for (Element e : elem.select("span")) {
+               System.out.println(e.text());
+           }
+           
+       }
+}      
         
-        System.out.println(createdTime);
-        System.out.println(onlyDate);
         
-        BaseTimeEntity plz = new BaseTimeEntity();
-        
-        System.out.println(plz.getCreatedTime());
-                
-        
+
         
 //        try {
 //            Document doc = Jsoup.connect("http://rss.donga.com/sportsdonga/soccer.xml").get();
@@ -59,6 +64,3 @@ public class Test {
 //            e.printStackTrace();
 //        }
         
-    }
-
-}

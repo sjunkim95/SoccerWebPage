@@ -37,6 +37,11 @@ public class InfoService {
         log.info("read(id={})", id);
         return infoRepository.findById(id).get();
     }
-    
+    public Integer delete(Integer id) {
+        log.info("delete(id={})",id);
+        
+        infoRepository.deleteById(id);
+        return id;
+    }
     
 }

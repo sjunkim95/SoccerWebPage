@@ -68,7 +68,7 @@ public class ViewController {
         Info entity = infoService.create(dto);
         attrs.addFlashAttribute("createdId", entity.getId());
         
-        return "redirect:/";
+        return "redirect:/view/info";
     }
     @GetMapping({"/detail", "/modify"})
     public void detail(Integer id, Model model) {
