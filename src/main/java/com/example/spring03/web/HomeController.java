@@ -1,6 +1,7 @@
 package com.example.spring03.web;
   
 import java.io.IOException;
+import java.util.Collection;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -32,7 +33,10 @@ public class HomeController {
         
         for (Element e : elem.select("span")) {
                 System.out.println(e.text());
+               // model.addAttribute("newsArticle", e);
             } // Model 사용해서 보내자 
+        
+        model.addAttribute("newsArticle", elem.select("span"));
         
         return "view/main"; // View 이름 -> src/main/resources/templates/home.html 
         
