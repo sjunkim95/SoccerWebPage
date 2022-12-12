@@ -18,30 +18,22 @@ public class Test {
 
     public static void main(String[] args) {
 
-        final String soccerUrl = "https://www.donga.com/news/Issue/051011";
+        final String soccerUrl = "https://www.fotmob.com/leagues/77/overview/World-Cup";
         
         Connection conn = Jsoup.connect(soccerUrl);
 
         try {
             Document document = conn.get();
-            Elements titleElements = document.select("span.tit");
+            Elements titleElements = document.select("div.css-1i0v7b9-CardCSS > div.css-1h54o7n-Wrapper > div.css-yyznn5-FtTeamWrapper > a.css-ceaipn-FtContainerLink-applyMediumHover e18x31lg1"
+                    + "> span");
 
             for (int j = 0; j < titleElements.size(); j++) {
                 final String url = titleElements.get(j).text();
-                // final String url = linkElements.get(j).attr("abs:href");
-                // String tag = "<a href='" + url + "'><br>";
-                // System.out.println(tag);
+  
                 System.out.println(url);
             }
 
-        final String soccerUrl2 = "https://www.donga.com/ISSUE/2022WorldCup";
-        Connection conn2 = Jsoup.connect(soccerUrl2);
-        Document document2 = conn2.get();
-        Elements fixutreElements = document2.select("div.tab_con02 > img");
-        for (int j = 0; j < fixutreElements.size(); j++) {
-            final String url = fixutreElements.get(j).attr("abs:src");
-            System.out.println(url);
-          }
+ 
         } catch (IOException e) {
             e.printStackTrace();
         }

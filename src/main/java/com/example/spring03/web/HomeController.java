@@ -57,10 +57,10 @@ public class HomeController {
           
           for (int j = 0; j < imgElements.size(); j++) {
                 final String url = imgElements.get(j).attr("abs:src");
-                model.addAttribute("newsImg1", imgElements.get(1));
-                model.addAttribute("newsImg2", imgElements.get(2));
-                model.addAttribute("newsImg3", imgElements.get(3));
-                model.addAttribute("newsImg4", imgElements.get(4));
+                model.addAttribute("newsImg1", imgElements.get(1).attr("abs:src"));
+                model.addAttribute("newsImg2", imgElements.get(2).attr("abs:src"));
+                model.addAttribute("newsImg3", imgElements.get(3).attr("abs:src"));
+                model.addAttribute("newsImg4", imgElements.get(4).attr("abs:src"));
             }
             
         } catch (IOException e) {

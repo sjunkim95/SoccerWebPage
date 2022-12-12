@@ -77,39 +77,44 @@
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div
-                                class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div
-                                        class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                    </div>
-                                    <div
-                                        class="row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <div
-                                                class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                        </div>
-                                        <div class="col">
-                                            <div
-                                                class="progress progress-sm mr-2">
-                                                <div
-                                                    class="progress-bar bg-info"
-                                                    role="progressbar"
-                                                    style="width: 50%"
-                                                    aria-valuenow="50"
-                                                    aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i
-                                        class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                </div>
+                        <div class="slider">
+                            <input type="radio" name="slide" id="slide1"
+                                checked> <input type="radio"
+                                name="slide" id="slide2"> <input
+                                type="radio" name="slide" id="slide3">
+                            <input type="radio" name="slide" id="slide4">
+                            <ul id="imgholder" class="imgs">
+                                <li>
+                                <h10 th:utext="${ newsTitle1 }"> </h10>
+                                <img th:src="${ newsImg1 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail">
+                                    </li>
+                                    
+                                <li>
+                                <h10 th:utext="${ newsTitle2 }"> </h10>
+                                <img th:src="${ newsImg2 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail"></li>
+                                <li>
+                                <h10 th:utext="${ newsTitle3 }"> </h10>
+                                <img th:src="${ newsImg3 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail"></li>
+                                <li>
+                                <h10 th:utext="${ newsTitle4 }"> </h10>
+                                <img th:src="${ newsImg4 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail"></li>
+                            </ul>
+                            <div class="bullets">
+                                <label for="slide1">&nbsp;</label> <label
+                                    for="slide2">&nbsp;</label> <label
+                                    for="slide3">&nbsp;</label> <label
+                                    for="slide4">&nbsp;</label>
                             </div>
                         </div>
+                        <!-- 슬라이드 컨텐트 -->
                     </div>
                 </div>
 
@@ -184,9 +189,9 @@
                 </div>
 
                 <!-- NEWS SLIDE -->
-                <div class="col-xl-7 col-lg-7">
+              <!--   <div class="col-xl-7 col-lg-7">
                     <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
+                        Card Header - Dropdown
                         <div
                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6
@@ -194,7 +199,7 @@
                                 실시간 뉴스</h6>
                         </div>
 
-                        <!-- Card Body -->
+                        Card Body
                         <div class="slider">
                             <input type="radio" name="slide" id="slide1"
                                 checked> <input type="radio"
@@ -232,12 +237,12 @@
                                     for="slide4">&nbsp;</label>
                             </div>
                         </div>
-                        <!-- 슬라이드 컨텐트 -->
+                        슬라이드 컨텐트
                     </div>
-                    <!-- 슬라이드 카드 끝 -->
+                    슬라이드 카드 끝
 
 
-                </div>
+                </div> -->
                 <!-- End of news slide -->
                 <td th:utext="${ newsArticle }"><br></td>
 
