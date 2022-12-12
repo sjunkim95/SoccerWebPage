@@ -54,8 +54,8 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active"><a class="nav-link"
-                th:href="@{ /view/createBoard }"> <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>글쓰기</span></a></li>
+                th:href="@{ /view/createBoard }"> <i
+                    class="fas fa-fw fa-tachometer-alt"></i> <span>글쓰기</span></a></li>
             <li class="nav-item active"><a class="nav-link"
                 href="https://discord.gg/zAX3d5ek"> <i
                     class="fas fa-fw fa-tachometer-alt"></i> <span>Community
@@ -226,8 +226,15 @@
                         <!-- 로그인 -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle"
-                            th:href="@{ /member/login }" role="button">
+                            th:href="@{ /member/login }"
+                            sec:authorize="isAnonymous()" role="button">
                                 <span>로그인</span> <!-- Counter - Alerts -->
+                        </a> <a class="nav-link dropdown-toggle "
+                            th:href="@{ /member/logout }"
+                            sec:authorize="isAuthenticated()"
+                            role="button" data-toggle="modal"
+                            data-target="#logoutModal"> <span>로그아웃</span>
+                                <!-- Counter - Alerts -->
                         </a>
                         </li>
 
@@ -247,8 +254,8 @@
                             id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"> <span
-                                class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-                                    McGee</span> <img
+                                class="mr-2 d-none d-lg-inline text-gray-600 small"
+                                sec:authentication="name"> </span> <img
                                 class="img-profile rounded-circle"
                                 th:src="@{/img/undraw_profile.svg}">
                         </a> <!-- Dropdown - User Information -->
@@ -331,11 +338,14 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button"
                         data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary"
+                        sec:authorize="isAuthenticated()"
+                        th:href="@{ /member/logout }">Logout</a>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
@@ -346,7 +356,7 @@
 
     <!-- Custom scripts for all pages-->
     <script th:src="@{/js/sb-admin-2.min.js}"></script>
-    
+
 
 </body>
 
