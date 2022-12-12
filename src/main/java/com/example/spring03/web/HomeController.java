@@ -33,8 +33,34 @@ public class HomeController {
                 final String url = fixutreElements.get(j).attr("abs:src");
                 System.out.println(url);
 
-                
                 model.addAttribute("newsFixture", url);
+            }
+            
+            final String soccerUrl2 = "https://www.donga.com/news/Issue/051011";
+            Connection conn2 = Jsoup.connect(soccerUrl2);
+            Document document2 = conn.get();
+            
+            Elements titleElements = document2.select("span.tit");
+            
+            for (int j = 0; j < titleElements.size(); j++) {
+                final String url = titleElements.get(j).text();
+                System.out.println(url);
+                
+                model.addAttribute("newsTitle1", titleElements.get(1));
+                model.addAttribute("newsTitle2", titleElements.get(2));
+                model.addAttribute("newsTitle3", titleElements.get(3));
+                model.addAttribute("newsTitle4", titleElements.get(4));
+                
+            }
+            
+          Elements imgElements = document2.select("div.articleList > div.thumb > a > img");
+          
+          for (int j = 0; j < imgElements.size(); j++) {
+                final String url = imgElements.get(j).attr("abs:src");
+                model.addAttribute("newsImg1", imgElements.get(1));
+                model.addAttribute("newsImg2", imgElements.get(2));
+                model.addAttribute("newsImg3", imgElements.get(3));
+                model.addAttribute("newsImg4", imgElements.get(4));
             }
             
         } catch (IOException e) {

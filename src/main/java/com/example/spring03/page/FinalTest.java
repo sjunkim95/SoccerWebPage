@@ -19,31 +19,33 @@ public class FinalTest {
             
             Elements fixutreElements = document.select("div.tab_con02 > img");
             
-            for (int j = 0; j < fixutreElements.size(); j++) {
-                  final String url = fixutreElements.get(j).attr("abs:src");
-                  System.out.println(url);
-            }
+//            for (int j = 0; j < fixutreElements.size(); j++) {
+//                  final String url = fixutreElements.get(j).attr("abs:src");
+//                  System.out.println(url);
+//            }
             
-            Elements titleElements = document.select("span.tit");
-            
-            for (int j = 0; j < titleElements.size(); j++) {
-                final String url = titleElements.get(j).text();
-                //final String url = linkElements.get(j).attr("abs:href");
-                //String tag = "<a href='" + url + "'><br>";
-                //System.out.println(tag);
-                System.out.println(url);
-            }
+//            Elements titleElements = document.select("span.tit");
+//            
+//            for (int j = 0; j < 5; j++) {
+//                final String url = titleElements.get(1).text();
+//                //final String url = linkElements.get(j).attr("abs:href");
+//                //String tag = "<a href='" + url + "'><br>";
+//                //System.out.println(tag);
+//                System.out.println(url);
+//                
+//                
+//            }
                 
-            Elements urlElements = document.select("div.articleList > div.rightList > span.tit > a");
-
-            for (int j = 0; j < urlElements.size(); j++) {
-              //  final String url = linkElements.get(j).();
-                final String url = urlElements.get(j).attr("abs:href");
-                //String tag = "<a href='" + url + "'><br>";
-                //System.out.println(tag);
-                System.out.println(url);
-            }
-            
+//            Elements urlElements = document.select("div.articleList > div.rightList > span.tit > a");
+//
+//            for (int j = 0; j < urlElements.size(); j++) {
+//              //  final String url = linkElements.get(j).();
+//                final String url = urlElements.get(j).attr("abs:href");
+//                //String tag = "<a href='" + url + "'><br>";
+//                //System.out.println(tag);
+//                System.out.println(url);
+//            }
+//            
             Elements imgElements = document.select("div.articleList > div.thumb > a > img");
             
             for (int j = 0; j < imgElements.size(); j++) {

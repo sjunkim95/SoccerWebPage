@@ -202,14 +202,28 @@
                                 type="radio" name="slide" id="slide3">
                             <input type="radio" name="slide" id="slide4">
                             <ul id="imgholder" class="imgs">
-                                <li><img
-                                    th:src="@{ /img/slide1.jpg }"></li>
-                                <li><img
-                                    th:src="@{ /img/slide2.jpg }"></li>
-                                <li><img
-                                    th:src="@{ /img/slide3.jpg }"></li>
-                                <li><img
-                                    th:src="@{ /img/slide4.jpg }"></li>
+                                <li>
+                                <h3 th:utext="${ newsTitle1 }"> </h3>
+                                <img th:src="${ newsImg1 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail">
+                                    </li>
+                                    
+                                <li>
+                                <h3 th:utext="${ newsTitle2 }"> </h3>
+                                <img th:src="${ newsImg2 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail"></li>
+                                <li>
+                                <h3 th:utext="${ newsTitle3 }"> </h3>
+                                <img th:src="${ newsImg3 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail"></li>
+                                <li>
+                                <h3 th:utext="${ newsTitle4 }"> </h3>
+                                <img th:src="${ newsImg4 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail"></li>
                             </ul>
                             <div class="bullets">
                                 <label for="slide1">&nbsp;</label> <label
