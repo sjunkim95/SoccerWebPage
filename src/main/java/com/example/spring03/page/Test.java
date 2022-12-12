@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,21 +19,46 @@ import org.jsoup.select.Elements;
 
 public class Test {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         
-       String URL = "https://sports.news.naver.com/wfootball/index";
+        final String soccerUrl = "https://www.donga.com/ISSUE/2022WorldCup";
+        Connection conn = Jsoup.connect(soccerUrl);
+
+        try {
+            Document document = conn.get();
+            Elements fixutreElements = document.select("div.tab_con02 > img");
+            
+            for (int j = 0; j < fixutreElements.size(); j++) {
+                  final String url = fixutreElements.get(j).attr("abs:src");
+                  System.out.println(url);
+            }
+         //   for (Element element : linkElements) {
+        //        System.out.println(element.attr("abs:src"));
+         //   }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+       //Elements linkElements = document.select("a.course_card_front");
+
+      // for (int j = 0; j < linkElements.size(); j++) {
+       //    final String url = linkElements.get(j).attr("abs:href");
+       //}
        
-       Document doc = null;
-       doc = Jsoup.connect(URL).get();
+       //Elements elem = doc.getElementsByClass("home_news");
        
-       Elements elem = doc.select("div[class=\"home_news\"]");
+     //  for (Element e : elem.select("a href")) {
+       //        System.out.println(e.text());
+      //     }
        
-       for (Element e : elem.select("span")) {
-               System.out.println(e.text());
-           }
+//       for (Element item : elem.select("href")) {
+//           String title = item.selectFirst("title").text();
+//           String href = item.selectFirst("link").text();
+//       }
            
-       }
-}      
         
         
 

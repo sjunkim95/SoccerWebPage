@@ -3,6 +3,7 @@ package com.example.spring03.web;
 import java.io.IOException;
 import java.util.Collection;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,24 +20,26 @@ public class HomeController {
     @GetMapping("/") // 요청 URL/방식 매핑. 
     public String home(Model model) {
         log.info("home()");
+
+        final String soccerUrl = "https://www.donga.com/ISSUE/2022WorldCup";
+        Connection conn = Jsoup.connect(soccerUrl);
         
-        String URL = "https://sports.news.naver.com/wfootball/index";
         
-        Document doc = null;
         try {
-            doc = Jsoup.connect(URL).get();
-        } catch (IOException e1) {
-            e1.printStackTrace();
+            Document document = conn.get();
+            Elements fixutreElements = document.select("div.tab_con02 > img");
+            
+            for (int j = 0; j < fixutreElements.size(); j++) {
+                final String url = fixutreElements.get(j).attr("abs:src");
+                System.out.println(url);
+
+                
+                model.addAttribute("newsFixture", url);
+            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        
-        Elements elem = doc.select("div[class=\"home_news\"]");
-        
-        for (Element e : elem.select("span")) {
-                System.out.println(e.text());
-               // model.addAttribute("newsArticle", e);
-            } // Model 사용해서 보내자 
-        
-        model.addAttribute("newsArticle", elem.select("span"));
         
         return "view/main"; // View 이름 -> src/main/resources/templates/home.html 
         
