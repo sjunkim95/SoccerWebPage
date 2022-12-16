@@ -43,6 +43,13 @@ dependencies {
     
     // JSoup
     implementation 'org.jsoup:jsoup:1.14.2'
+    
+    // Robot Captcha 부분
+    implementation 'javax.xml.bind:jaxb-api'
+    implementation 'cn.apiclub.tool:simplecaptcha:1.2.2'
+    
+    // Java Mail Sender
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {

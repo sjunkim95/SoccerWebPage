@@ -1,22 +1,33 @@
 package com.example.spring03.web;
-  
+
+import java.util.List;
+
 import java.io.IOException;
-import java.util.Collection;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model; 
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.spring03.domain.SoccerPosts;
+import com.example.spring03.service.SoccerPostsService;
   
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
   
 @Slf4j
+@RequiredArgsConstructor
 @Controller // 스프링 컨트롤러 컴포넌트 
 public class HomeController {
+    
+    private final SoccerPostsService soccerPostService;
+    
     @GetMapping("/") // 요청 URL/방식 매핑. 
     public String home(Model model) {
         log.info("home()");

@@ -18,14 +18,14 @@ public class Test {
 
     public static void main(String[] args) {
 
-        final String soccerUrl = "https://www.fotmob.com/leagues/77/overview/World-Cup";
+        final String soccerUrl = "https://football.scoreman.com/cupmatch/2022/75";
+                //"https://football.scoreman.com/league/36";
         
         Connection conn = Jsoup.connect(soccerUrl);
 
         try {
             Document document = conn.get();
-            Elements titleElements = document.select("div.css-1i0v7b9-CardCSS > div.css-1h54o7n-Wrapper > div.css-yyznn5-FtTeamWrapper > a.css-ceaipn-FtContainerLink-applyMediumHover e18x31lg1"
-                    + "> span");
+            Elements titleElements = document.select("div.mcontent > div.data");
 
             for (int j = 0; j < titleElements.size(); j++) {
                 final String url = titleElements.get(j).text();
@@ -83,3 +83,18 @@ public class Test {
 //            System.out.println("실패");
 //            e.printStackTrace();
 //        }
+
+/// INFLEARN 예제
+//final String inflearnUrl = "https://www.inflearn.com/courses/it-programming";
+//Connection conn = Jsoup.connect(inflearnUrl);
+//
+//try {
+//    Document document = conn.get();
+//    Elements linkElements = document.select("a.course_card_front");
+//
+//    for (int j = 0; j < linkElements.size(); j++) {
+//        final String url = linkElements.get(j).attr("abs:href");
+//        System.out.println(url);
+//        String tag = "<a href='" + url + "'><br>";
+//        System.out.println(tag);
+//    }

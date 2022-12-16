@@ -6,8 +6,6 @@
 <div layout:fragment="content">
 	<div class=" my-2">
 		<h1>공지사항</h1>
-		<div class="form-group">
-</div>
 	</div>
 	<table class="table table-hover">
 		<thead>
@@ -26,7 +24,7 @@
 					th:text="${ post.title }"></a></td>
 				<td th:text="${ post.author }"></td>
 				<td
-					th:text="${ #temporals.format(post.createdTime, 'yyyy-MM-dd') }"></td>
+					th:text="${ #temporals.format(post.modifiedTime, 'yyyy-MM-dd') }"></td>
 				<td th:text="${ post.clickCount }"></td>
 			</tr>
 		</tbody>
@@ -36,17 +34,17 @@
 			<li class="page-item"
 				th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'"><a
 				class="page-link"
-				th:href="@{/view/list(page=${list.pageable.pageNumber - 1})}">이전</a></li>
+				th:href="@{/view/search(page=${list.pageable.pageNumber - 1}, type=${param.type}, keyword=${param.keyword})}">이전</a></li>
 			<li class="page-item"
 				th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
 				th:each="i : ${#numbers.sequence(startPage, endPage)}"><a
 				class="page-link"
-				th:href="@{/view/list(page=${i - 1})}"
+				th:href="@{/view/search(page=${i - 1}, type=${param.type}, keyword=${param.keyword})}"
 				th:text="${i}">1</a></li>
 			<li class="page-item"
 				th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'"><a
 				class="page-link"
-				th:href="@{/view/list(page=${list.pageable.pageNumber + 1})}">다음</a></li>
+				th:href="@{/view/search(page=${list.pageable.pageNumber + 1},type=${param.type}, keyword=${param.keyword})}">다음</a></li>
 		</ul>
 	</nav>
 	<form class="row g-3 d-flex justify-content-end"
@@ -59,11 +57,11 @@
 				<option value="a">작성자</option>
 			</select>
 		</div>
-		<div class="col-6">
+		<div class="col-6" style="float: none">
 			<input type="text" class="form-control" name="keyword" 
 				placeholder="검색어"  th:value = "${param.keyword}" required autofocus />
 		</div>
-		<div class="col-2" style = "float:left">
+		<div class="col-2">
 			<input type="submit" class="btn btn-secondary" value="검색" />
 		</div>
 	</form>
