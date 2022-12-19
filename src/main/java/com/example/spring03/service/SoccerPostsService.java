@@ -25,10 +25,10 @@ public class SoccerPostsService {
 	private final SoccerPostsRepository soccerPostsRepository;
 
 	// 목록 보기
-	public Page<SoccerPosts> read(Pageable pageable) {
+	public Page<SoccerPosts> read(Pageable pageable, String category) {
 		log.info("read()");
 
-		return soccerPostsRepository.findAll(pageable);
+		return soccerPostsRepository.findByCategoryIgnoreCaseContainingOrderByIdDesc(category, pageable);
 	}
 
 	// 새글 작성
@@ -61,7 +61,7 @@ public class SoccerPostsService {
 		log.info("update(dto={})", dto);
 
 		SoccerPosts entity = soccerPostsRepository.findById(dto.getId()).get();
-		entity.update(dto.getTitle(), dto.getContent());
+		entity.update(dto.getTitle(), dto.getContent(), dto.getFilesId());
 
 		return entity.getId();
 	}

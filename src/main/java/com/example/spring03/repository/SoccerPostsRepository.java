@@ -3,6 +3,8 @@ package com.example.spring03.repository;
 
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +23,8 @@ public interface SoccerPostsRepository extends JpaRepository<SoccerPosts, Intege
 	Page<SoccerPosts> findByContentContaining(String content, Pageable pageable);
 	Page<SoccerPosts> findByAuthorContaining(String author, Pageable pageable);
 	Page<SoccerPosts> findByTitleContainingOrContentContaining(String title, String content, Pageable pageable);
+	
+	Page<SoccerPosts> findByCategoryIgnoreCaseContainingOrderByIdDesc(String category, Pageable pageable);
 	
 	// 조회수 증가
 	@Modifying

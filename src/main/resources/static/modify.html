@@ -25,9 +25,9 @@
 							<div class="FormSelectBox menu_candidates_selectbox">
 								<div class="FormSelectButton">
 									<input
-                                        class="form-select form-select-lg mb-3 form-control mx-1"
-                                        aria-label=".form-select-lg example" th:value="${ post.category }"
-                                        style="width: 580px; font-size: 15px;" readonly />
+										class="form-select form-select-lg mb-3 form-control mx-1"
+										aria-label=".form-select-lg example" th:value="${ post.category }"
+										style="width: 580px; font-size: 15px;" readonly />
 											<div class="row">
 					                    <div style="display: none">
 												<input id="id" name="id" class="form-control"
@@ -71,7 +71,7 @@
 	    		return;
 	    	}
 	    	
-	    	const result = confirm('수정?');
+	    	const result = confirm('수정 완료?');
 	    	if (result) {
 	    		formModify.action = '/view/update';
 	    		formModify.method = 'post';

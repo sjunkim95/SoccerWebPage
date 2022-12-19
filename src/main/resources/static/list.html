@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{ layout/layout }">
+
+<div layout:fragment="content">
+	<div class=" my-2">
+		<h1>[[${ category }]]</h1>
+	</div>
+	<form class="row g-3 d-flex justify-content-end">
+		<div class="col-auto" >
+			<input type="text" class="form-control" id="search"
+				placeholder="검색" >
+		</div>
+		<div class="col-auto">
+			<button type="submit" class="btn btn-secondary">검색</button>
+		</div>
+	</form>
+	<table id="listTable" class="table table-hover">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>수정시간</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="post : ${ list }">
+					<td th:text="${ post.id }"></td>
+					<td><a th:href="@{ /view/detail?id={id} (id = ${ post.id }) }"
+						th:text="${ post.title }"></a></td>
+					<td th:text="${ post.author }"></td>
+					<td
+						th:text="${ #temporals.format(post.modifiedTime, 'yyyy-MM-dd HH:mm:ss') }"></td>
+					<td th:text="${ post.clickCount }"></td>
+				</th:block>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<form th:action="@{ /view/create }">
+			<input type="hidden" name="category" th:value="${ category }" />
+			<button class="btn btn-success" type="submit" style="float: right"><span>글쓰기</span></button>
+		</form>
+	</div>
+	
+	<div id="createModal" class="modal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+                        <p id="modalMessage">Modal 메시지</p>
+                    </div>
+					<div class="modal-footer">
+						<button id="btnClose" type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+	</div> <!-- modal -->
+</div>
+
+
+<script layout:fragment="script" th:inline="javascript">
+	const modalMessage = document.querySelector('#modalMessage');
+	const createModal = document.querySelector('#createModal');
+	const modal = new bootstrap.Modal(createModal);
+	
+	function createAndShowModal(msg) {
+	    modalMessage.innerHTML = msg;
+	    modal.show();
+	}
+	
+	const createdPostId = [[ ${createdId} ]];
+	if (createdPostId) { 
+		// redirect attribute가 있는 경우
+		createAndShowModal('새 포스트(#' + createdPostId + ') 작성 성공');
+	}
+	
+	const deletedPostId = [[ ${deletedId} ]];
+	if (deletedPostId) { 
+	    // redirect attribute가 있는 경우
+	    createAndShowModal('포스트(#' + deletedPostId + ') 삭제 성공');
+	}
+	
+	 const btnClose = document.querySelector('#btnClose');
+	 btnClose.addEventListener('click', function(){
+			modal.hide();
+		});
+	    
+</script>
+</html>

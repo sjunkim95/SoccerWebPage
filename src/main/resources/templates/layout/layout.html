@@ -71,25 +71,26 @@
 
             <!-- 옆에 이미지 넣는다면 <i class="fas fa-fw fa-chart-area"></i> -->
             <!-- Nav Item - Charts -->
-            <li class="nav-item"><a class="nav-link"
-                th:href="@{ /view/list}"> <i
-                    class="fas fa-fw fa-chart-area"></i> <span>공지사항</span></a>
+            <li class="nav-item"><form th:action="@{ /view/list }"><input name="category" value="Notice" style="display:none;" />
+            <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
+            <span>공지사항</span></button></form>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">
-                    <span>자유게시판</span>
-            </a></li>
+            <li class="nav-item"><form th:action="@{ /view/list }"><input name="category" value="Free" style="display:none;" />
+            <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
+            <span>자유 게시판</span></button></form>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">
-                    <span>경기후기 게시판</span>
-            </a></li>
+            <li class="nav-item"><form th:action="@{ /view/list }"><input name="category" value="Review" style="display:none;" />
+            <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
+            <span>경기 후기 게시판</span></button></form>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">
-                    <span>경기예상 게시판</span>
-            </a></li>
+            <li class="nav-item"><form th:action="@{ /view/list }"><input name="category" value="Prediction" style="display:none;" />
+            <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
+            <span>경기 예상 게시판</span></button></form>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">
-                    <span>가입인사 게시판</span>
-            </a></li>
+            <li class="nav-item"><form th:action="@{ /view/list }"><input name="category" value="Greeting" style="display:none;" />
+            <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
+            <span>가입 인사 게시판</span></button></form>
+            </li>
 
 
 
@@ -356,6 +357,9 @@
 
     <!-- Custom scripts for all pages-->
     <script th:src="@{/js/sb-admin-2.min.js}"></script>
+    <th:block layout:fragment="script">
+   
+    </th:block>
 
 
 </body>

@@ -73,17 +73,10 @@ div.right {
 						<div class="column_title">
 							<div class="FormSelectBox menu_candidates_selectbox">
 								<div class="FormSelectButton">
-									<select
-										class="form-select form-select-lg mb-3 form-control mx-1"
-										aria-label=".form-select-lg example"
-										style="width: 580px; font-size: 15px;">
-										<option selected>게시판을 선택해 주세요.</option>
-										<option value="1">가입인사 게시판</option>
-										<option value="2">공지사항</option>
-										<option value="3">자유게시판</option>
-										<option value="4">경기후기 게시판</option>
-										<option value="5">경기예상 게시판</option>
-									</select>
+									<input
+                                        class="form-select form-select-lg mb-3 form-control mx-1"
+                                        aria-label=".form-select-lg example" th:value="${ post.category }"
+                                        style="width: 580px; font-size: 15px;" readonly />
 									<div class="row">
 										<form id="formModify">
 											<div style="display: none">
@@ -103,12 +96,16 @@ div.right {
 													th:text="${post.content}" readonly></textarea>
 											</div>
 											<div class="my-2 mx-3">
-												<label for="author" class="form-label"></label> 
-												<a>[[${
-													#temporals.format(post.modifiedTime, 'yyyy-MM-dd') }]]</a><input
-													id="author" class="form-control" type="text" name="author"
-													th:value="${post.author}" readOnly /> 
-											</div>
+                                                <label for="author" class="form-label">작성자</label> <input
+                                                    id="author" class="form-control" type="text" name="author"
+                                                    th:value="${post.author}" readOnly /> <a>[[${
+                                                    #temporals.format(post.modifiedTime, 'yyyy-MM-dd') }]]</a>
+                                            </div>
+                                                <input type="hidden" name=category th:value="${post.category}" />
+                                            <div th:if="${post.filesId != null}">
+                                                <strong>첨부파일 : </strong>
+                                                    <a class="card-text" th:href="@{'/download/' + ${post.filesId}}" th:text="${filename}"></a>
+                                          </div>
 										</form>
 									</div>
 								</div>
@@ -120,7 +117,28 @@ div.right {
 		</div>
 
     </section>
+    
+    <hr />
+    <div class="card my-4">
+        <div class="card-body row">
+            <div class="col-2">
+                <input type="text" class="form-control" id="writer"
+                    placeholder="user" />
+            </div>
+            <div class="col-8">
+                <textarea rows="1" class="form-control" id="replyText"
+                    placeholder="댓글 작성"></textarea>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-secondary" id="btnReplyRegister">등록</button>
+            </div>
+        </div>
     </div>
+    <!-- 댓글 리스트 영역 -->
+    <hr />
+    <div id="replies"></div>
+    </div>
+    
     <div class="right">
         <p>출력되라</p>
         <div class="container">
@@ -134,28 +152,74 @@ div.right {
         </div>
     </div>
     
-</div>
-<script layout:fragment="script">
-	 
+    <!-- 수정 성공 modal -->
+    <div id="createModal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalMessage">Modal 메시지</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnClose" type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">확인</button>
+                    </div>
+                </div>
+            </div>
+    </div> <!-- modal end -->
+    
+</div><!-- layout:fragment="content" end -->
+<th:block layout:fragment="script" th:inline="javascript">
+    <!-- Ajax를 사용하기 위한 axios 자바스크립트 라이브러리 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:src="@{ /js/reply.js }"></script>
+    
+    <script>
     const formModify = document.querySelector('#formModify');
     
     const btnDelete = document.querySelector('#btnDelete');
     btnDelete.addEventListener('click', function () {
-    	const result = confirm('정말 삭제?');
-    	if (result) {
-    		formModify.action = '/view/delete';
-    		formModify.method = 'post';
-    		formModify.submit();
-    	}
+        const result = confirm('정말 삭제하시겠습니까?');
+        if (result) {
+            formModify.action = '/view/delete';
+            formModify.method = 'post';
+            formModify.submit();
+        }
     });
     const btnUpdate = document.querySelector('#btnUpdate');
     btnUpdate.addEventListener('click', function () {
-    	const result = confirm('수정하러 갈끄야??');
-    	if (result) {
-    		formModify.action = '/view/modify';
-    		formModify.method = 'get';
-    		formModify.submit();
-    	}
+        const result = confirm('수정하시겠습니까?');
+        if (result) {
+            formModify.action = '/view/modify';
+            formModify.method = 'get';
+            formModify.submit();
+        }
     });
+    
+    const modalMessage = document.querySelector('#modalMessage');
+    const createModal = document.querySelector('#createModal');
+    const modal = new bootstrap.Modal(createModal);
+    
+    function createAndShowModal(msg) {
+        modalMessage.innerHTML = msg;
+        modal.show();
+    }
+    
+    const updatedPostId = [[ ${updatedId} ]];
+    if (updatedPostId) { 
+        // redirect attribute가 있는 경우
+        createAndShowModal('포스트(#' + updatedPostId + ') 수정 성공');
+    }
+    
+    const btnClose = document.querySelector('#btnClose');
+     btnClose.addEventListener('click', function(){
+            modal.hide();
+        });
     </script>
+    
+</th:block>
 </html>

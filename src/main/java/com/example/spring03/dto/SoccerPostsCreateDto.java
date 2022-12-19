@@ -11,8 +11,7 @@ public class SoccerPostsCreateDto {
 	private String title;
 	private String content;
 	private String author;
-	private String filename;
-	private String filepath;
+	private Long filesId;
 	private String category;
 	private Integer clickCount;
 	
@@ -23,8 +22,7 @@ public class SoccerPostsCreateDto {
 				.author(author)
 				.category(category)
 				.clickCount(0)
-				.filename(null)
-				.filenpath(null)
+				.filesId(filesId)
 				.build();
 	}
 }

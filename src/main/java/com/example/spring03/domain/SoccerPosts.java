@@ -33,21 +33,17 @@ public class SoccerPosts extends BaseTimeEntity {
 	@Column(columnDefinition = "integer default 0", nullable = false)
 	private Integer clickCount;
 	@Column
-	private String filename;
-	@Column
-	private String filenpath;
+    private Long filesId;
 	@Column(nullable = false)
 	private String category;
 	
-	public SoccerPosts update(String title, String content) {
+	public SoccerPosts update(String title, String content, Long filesId) {
         this.title = title;
         this.content = content;
+        this.filesId = filesId;
         
         return this;
 	}
-//	public SoccerPosts clickCount(Integer clickCount) {
-//		this.clickCount=clickCount;
-//		return this;
-//	}
+
 
 }

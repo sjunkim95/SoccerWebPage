@@ -13,14 +13,14 @@ public class SoccerPostsUpdateDto {
 	private Integer id;
 	private String title;
 	private String content;
+	private Long filesId;
 	
 	public  SoccerPosts toEntity() {
 		return  SoccerPosts.builder()
 				.id(id)
 				.title(title)
 				.content(content)
-				.filename(null)
-				.filenpath(null)
+				.filesId(filesId)
 				.build();
 	}
 }

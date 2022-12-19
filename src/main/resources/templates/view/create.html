@@ -52,7 +52,7 @@ div.right {
 
 <div layout:fragment="content">
     <div class="left">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <section class="container">
                 <div class="WritngWrap">
                     <div class="WritngHeader">
@@ -74,19 +74,15 @@ div.right {
                                         class="FormSelectBox menu_candidates_selectbox">
                                         <div class="FormSelectButton">
                                             <select
-                                                class="form-select form-select-lg mb-3 form-control mx-1"
-                                                aria-label=".form-select-lg example"
-                                                name="type"
-                                                style="width: 580px; font-size: 15px;">
-                                                <option value="1">가입인사
-                                                    게시판</option>
-                                                <option value="2">공지사항</option>
-                                                <option value="3">자유게시판</option>
-                                                <option value="4">경기후기
-                                                    게시판</option>
-                                                <option value="5">경기예상
-                                                    게시판</option>
-                                            </select>
+                                        class="form-select form-select-lg mb-3 form-control mx-1"
+                                        aria-label=".form-select-lg example" name="type"
+                                        style="width: 580px; font-size: 15px;">
+                                        <option id="post1" value="Greeting">가입인사 게시판</option>
+                                        <option id="post2" value="Notice">공지사항</option>
+                                        <option id="post3" value="Free">자유게시판</option>
+                                        <option id="post4" value="Review">경기후기 게시판</option>
+                                        <option id="post5" value="Prediction">경기예상 게시판</option>
+                                    </select>
                                             <div class="row">
                                                 <div
                                                     class="FlexableTextArea">
@@ -115,6 +111,14 @@ div.right {
                                                         name="author"
                                                         required />
                                                 </div>
+                                                <hr/>
+                                            <div class="my-1 form-group row" style="float : right;">
+                                                <label for="inputFile" class="col-sm-3 form-label">첨부 파일</label>
+                                                <div class="custom-file" id="inputFile">
+                                                    <input name="file" type="file" class="custom-file-input" id="customFile" />
+                                                    <label class="custom-file-label form-label" for="customFile">파일을 선택해 주세요.</label>
+                                                </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -133,4 +137,37 @@ div.right {
     </div>
 </div>
 
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+        const category = [[ ${ category } ]];
+        console.log(category);
+        
+        const greeting = document.querySelector('#post1');
+        const notice = document.querySelector('#post2');
+        const free = document.querySelector('#post3');
+        const review = document.querySelector('#post4');
+        const prediction = document.querySelector('#post5');
+        
+        if(greeting.value == category){
+            greeting.setAttribute('selected', 'selected');
+        } else if(notice.value == category){
+            notice.setAttribute('selected', 'selected');
+        } else if(free.value == category){
+            free.setAttribute('selected', 'selected');
+        } else if(review.value == category){
+            review.setAttribute('selected', 'selected');
+        } else if(prediction.value == category ) {
+            prediction.setAttribute('selected', 'selected');
+        }
+    </script>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+          $('.custom-file-input').on('change', function () {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+          });
+    </script>
+
+</th:block>
 </html>
