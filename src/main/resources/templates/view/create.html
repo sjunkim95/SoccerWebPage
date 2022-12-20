@@ -131,7 +131,47 @@ div.right {
         </form>
     </div>
     <div class="right">
-        <p>출력되라</p>
+        <!-- Earnings (Monthly) Card Example -->
+                
+                        <div class="slider">
+                            <input type="radio" name="slide" id="slide1"
+                                checked> <input type="radio"
+                                name="slide" id="slide2"> <input
+                                type="radio" name="slide" id="slide3">
+                            <input type="radio" name="slide" id="slide4">
+                            <ul id="imgholder" class="imgs">
+                                <li>
+                                <h10 th:utext="${ newsTitle1 }"> </h10>
+                                <img th:src="${ newsImg1 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail">
+                                    </li>
+                                    
+                                <li>
+                                <h10 th:utext="${ newsTitle2 }"> </h10>
+                                <img th:src="${ newsImg2 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail"></li>
+                                <li>
+                                <h10 th:utext="${ newsTitle3 }"> </h10>
+                                <img th:src="${ newsImg3 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail"></li>
+                                <li>
+                                <h10 th:utext="${ newsTitle4 }"> </h10>
+                                <img th:src="${ newsImg4 }"
+                                    alt="group table"
+                                    class="img-responsive img-thumbnail"></li>
+                            </ul>
+                            <div class="bullets">
+                                <label for="slide1">&nbsp;</label> <label
+                                    for="slide2">&nbsp;</label> <label
+                                    for="slide3">&nbsp;</label> <label
+                                    for="slide4">&nbsp;</label>
+                            </div>
+                        </div>
+                        <!-- 슬라이드 컨텐트 -->
+                  
         <i class="bi bi-hand-thumbs-up"></i>
         
     </div>

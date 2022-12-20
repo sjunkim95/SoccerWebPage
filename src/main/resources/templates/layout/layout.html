@@ -75,6 +75,10 @@
             <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
             <span>공지사항</span></button></form>
             </li>
+            <li class="nav-item"><form th:action="@{ /view/list }">
+            <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
+            <span>전체 게시판</span></button></form>
+            </li>
             <li class="nav-item"><form th:action="@{ /view/list }"><input name="category" value="Free" style="display:none;" />
             <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
             <span>자유 게시판</span></button></form>

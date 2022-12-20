@@ -18,10 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class MemberService {
     
-    //Captcha 시작
-    
-    //Captcha 끝
-    
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
     

@@ -1,8 +1,13 @@
 package com.example.spring03.web;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -58,18 +63,77 @@ public class SoccerPostsController {
 
 	// 게시물 생성
 	@GetMapping("/create")
-    public void create(Model model, String category) {
+    public String create(Model model, String category) {
         log.info("create(category = {})", category);
-        
         model.addAttribute("category", category);
+        
+        log.info("home()");
+
+        final String soccerUrl = "https://www.donga.com/ISSUE/2022WorldCup";
+        Connection conn = Jsoup.connect(soccerUrl);
+        
+        
+        try {
+            Document document = conn.get();
+            Elements fixutreElements = document.select("div.tab_con02 > img");
+            
+            for (int j = 0; j < fixutreElements.size(); j++) {
+                final String url = fixutreElements.get(j).attr("abs:src");
+                System.out.println(url);
+
+                model.addAttribute("newsFixture", url);
+            }
+            
+            final String soccerUrl2 = "https://www.donga.com/news/Issue/051011";
+            Connection conn2 = Jsoup.connect(soccerUrl2);
+            Document document2 = conn2.get();
+            
+            Elements titleElements = document2.select("span.tit");
+            
+            for (int j = 0; j < titleElements.size(); j++) {
+                final String url = titleElements.get(j).text();
+                
+                
+                model.addAttribute("newsTitle1", titleElements.get(1));
+                model.addAttribute("newsTitle2", titleElements.get(2));
+                model.addAttribute("newsTitle3", titleElements.get(3));
+                model.addAttribute("newsTitle4", titleElements.get(4));
+                
+            }
+            
+          Elements imgElements = document2.select("div.articleList > div.thumb > a > img");
+          
+          for (int j = 0; j < imgElements.size(); j++) {
+             //   final String url = imgElements.get(j).attr("abs:src");
+                model.addAttribute("newsImg1", imgElements.get(1).attr("abs:src"));
+                model.addAttribute("newsImg2", imgElements.get(2).attr("abs:src"));
+                model.addAttribute("newsImg3", imgElements.get(3).attr("abs:src"));
+                model.addAttribute("newsImg4", imgElements.get(4).attr("abs:src"));
+            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return "view/create";
     }
 
 	@PostMapping("/create")
     public String create(@RequestParam("file") MultipartFile files, String type, SoccerPostsCreateDto dto, RedirectAttributes attrs) {
         log.info("create(dto={}, type = {})", dto, type);
         
+        
+        
          try {
                 String origFilename = files.getOriginalFilename();
+                if(origFilename.equals("")) {
+                    dto.setCategory(type);
+                    SoccerPosts entity = soccerPostsService.create(dto);
+                    attrs.addFlashAttribute("createdId", entity.getId());
+                    
+                    return "redirect:/view/list?category=" + type;
+                }
+                
                 String filename = new MD5Generator(origFilename).toString();
                 /* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
                 String savePath = System.getProperty("user.dir") + "\\files";
@@ -92,13 +156,14 @@ public class SoccerPostsController {
                 fileDto.setOrigFilename(origFilename);
                 fileDto.setFilename(filename);
                 fileDto.setFilePath(filePath);
-
-                Long fileId = fileService.saveFile(fileDto);
                 
+                Long fileId = fileService.saveFile(fileDto);
+                        
                 dto.setCategory(type);
                 dto.setFilesId(fileId);
                 SoccerPosts entity = soccerPostsService.create(dto);
                 attrs.addFlashAttribute("createdId", entity.getId());
+                        
                 
             } catch(Exception e) {
                 e.printStackTrace();

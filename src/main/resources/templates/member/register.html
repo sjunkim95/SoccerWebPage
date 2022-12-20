@@ -80,10 +80,14 @@
                                             placeholder="Repeat Password">
                                     </div>
                                 </div>
+                                
                                 <a> <input type="submit"
                                     id="btnSubmit"
                                     class="btn btn-primary btn-user btn-block"
                                     value="회원가입">
+                                    <!-- 메일 보내기 -->
+                                    
+                                    <!-- 메일 보내기 끝 -->
 
                                 </a>
                                 <hr>
@@ -96,9 +100,9 @@
                                     <i class="fab fa-facebook-f fa-fw"></i>
                                     Register with Facebook
                                 </a>
-                                    
+                                    </form>
                                 </div>
-                            </form>
+                            
                             <hr>
                             <div class="text-center">
                                 <a class="small"
@@ -132,6 +136,12 @@
 
     <!-- axios-http JS -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+    const message = document.querySelector('#message');
+    message.innerHTML = '회원가입을 축하합니다.';
+    console.log(message.value);
+    
+    </script>
 
 
 

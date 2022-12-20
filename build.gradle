@@ -50,6 +50,10 @@ dependencies {
     
     // Java Mail Sender
     implementation 'org.springframework.boot:spring-boot-starter-mail'
+    
+    // apache
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    
 }
 
 tasks.named('test') {
