@@ -76,7 +76,7 @@
                                     <div class="col-sm-6">
                                         <input type="password"
                                             class="form-control form-control-user"
-                                            id="exampleRepeatPassword"
+                                            id="repeatPassword"
                                             placeholder="Repeat Password">
                                     </div>
                                 </div>
@@ -139,11 +139,18 @@
     message.innerHTML = '회원가입을 축하합니다.';
     console.log(message.value);
     
-    const password = document.getElementById("password");
-    const repeatPassword = document.getElementById("exampleRepeatPassword");
+    </script>
     
-    function validatePassword(){
-    	
+    <script>
+    var password = document.getElementById("password")
+    , repeatPassword = document.getElementById("repeatPassword");
+
+
+
+
+  function validatePassword(){
+
+
     if(password.value != repeatPassword.value) {
       repeatPassword.setCustomValidity("비밀번호 불일치");
     } else {
@@ -153,7 +160,7 @@
 
   password.onchange = validatePassword;
   repeatPassword.onkeyup = validatePassword;
-    
+
     </script>
 
 
