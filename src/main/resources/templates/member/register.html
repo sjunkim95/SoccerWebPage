@@ -139,7 +139,21 @@
     message.innerHTML = '회원가입을 축하합니다.';
     console.log(message.value);
     
-   
+    const password = document.getElementById("password");
+    const repeatPassword = document.getElementById("exampleRepeatPassword");
+    
+    function validatePassword(){
+    	
+    if(password.value != repeatPassword.value) {
+      repeatPassword.setCustomValidity("비밀번호 불일치");
+    } else {
+      repeatPassword.setCustomValidity(''); // 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
+    }
+  }
+
+  password.onchange = validatePassword;
+  repeatPassword.onkeyup = validatePassword;
+    
     </script>
 
 
