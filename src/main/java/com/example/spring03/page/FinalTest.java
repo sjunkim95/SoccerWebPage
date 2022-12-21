@@ -11,18 +11,20 @@ public class FinalTest {
     
     public static void main(String[] args) {
         
-        final String soccerUrl = "https://namu.wiki/w/2022%20FIFA%20%EC%9B%94%EB%93%9C%EC%BB%B5%20%EC%B9%B4%ED%83%80%EB%A5%B4/%EA%B8%B0%EB%A1%9D%EC%8B%A4";
+        final String soccerUrl = "https://www.bbc.com/sport/football/premier-league/top-scorers";
         Connection conn = Jsoup.connect(soccerUrl);
 
         try {
-            Document document = conn.ignoreHttpErrors(true).get();
+            Document document = conn.get();
              
-            Elements imgElements = document.select("div.rDPkPNBD");
+            Elements imgElements = document.select("span.gs-u-vh");
             
             for (int j = 0; j < imgElements.size(); j++) {
                   final String url = imgElements.get(j).text();
                   System.out.println(url);
               }
+            
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

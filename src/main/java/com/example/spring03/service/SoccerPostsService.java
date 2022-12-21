@@ -26,9 +26,15 @@ public class SoccerPostsService {
 
 	// 목록 보기
 	public Page<SoccerPosts> read(Pageable pageable, String category) {
-		log.info("read()");
+		log.info("read(category = {})", category);
 
 		return soccerPostsRepository.findByCategoryIgnoreCaseContainingOrderByIdDesc(category, pageable);
+	}
+	
+	public List<SoccerPosts> read() {
+		log.info("read()");
+
+		return soccerPostsRepository.ClickCountOrder();
 	}
 
 	// 새글 작성
@@ -47,6 +53,8 @@ public class SoccerPostsService {
 		System.out.println(post);
 		return post;
 	}
+	
+	
 
 	// 삭제
 	public Integer delete(Integer id) {
@@ -87,10 +95,25 @@ public class SoccerPostsService {
 
 		return page;
 	}
+	
 	@Transactional
 	public void clickCount(Integer clickCount) {
 		log.info("clickCount(조회수={})",clickCount);
 		soccerPostsRepository.clickCount(clickCount);
+	}
+	
+	// 좋아요 증가
+	@Transactional
+	public void likeCount(Integer likeCount) {
+		log.info("likeCount(id={})", likeCount);
+		soccerPostsRepository.likeCount(likeCount);
+	}
+		
+	// 싫어요 증가
+	@Transactional
+	public void dislikeCount(Integer dislikeCount) {
+		log.info("dislikeCount(id={})", dislikeCount);
+		soccerPostsRepository.dislikeCount(dislikeCount);
 	}
 
 

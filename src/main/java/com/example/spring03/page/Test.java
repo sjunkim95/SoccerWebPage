@@ -18,20 +18,29 @@ public class Test {
 
     public static void main(String[] args) {
 
-        final String soccerUrl = "https://football.scoreman.com/cupmatch/2022/75";
-                //"https://football.scoreman.com/league/36";
+        final String soccerUrl = "https://www.goal.com/kr/%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4%EB%A6%AC%EA%B7%B8/%EC%9D%BC%EC%A0%95-%EA%B2%B0%EA%B3%BC/2kwbbcootiqqgmrzs6o5inle5";
+    
         
         Connection conn = Jsoup.connect(soccerUrl);
 
         try {
             Document document = conn.get();
-            Elements titleElements = document.select("div.mcontent > div.data");
+            Elements titleElements = document.select("span.team-name");
 
             for (int j = 0; j < titleElements.size(); j++) {
                 final String url = titleElements.get(j).text();
   
                 System.out.println(url);
-            }
+            } 
+            
+            Elements imgElements = document.select("span.crest > img");
+            for (int j = 0; j < imgElements.size(); j++) {
+                final String url = imgElements.get(j).attr("abs:src");
+                System.out.println(url);
+           //   final String url = titleElements.get(j).text();
+               // final String url = imgElements.get(j).attr("abs:src");
+              //  System.out.println(imgElements.attr("abs:src"));
+              }
 
  
         } catch (IOException e) {

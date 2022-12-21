@@ -8,7 +8,25 @@
 <meta name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" th:href="@{ /css/slider2.css }">
-
+<style>
+body {
+  background: #1E1930;
+  color: #D2D1D5;
+}
+tr:nth-child(even) {
+  background-color: #2e2649;
+}
+tr:nth-child(odd) {
+  background-color: #423b5b;
+}
+th {
+  background-color: #342F44;
+  color: white;
+}
+.noBorder {
+    border:none !important;
+}
+</style>
 </head>
 <body>
     <!-- Begin Page Content -->
@@ -38,9 +56,22 @@
                                 <div class="col mr-2">
                                     <div
                                         class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Earnings (Monthly)</div>
+                                        경기일정 <h3 th:utext="${ plDate0 }"> </h3></div>
                                     <div
-                                        class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                        class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                    <h15 th:utext="${ plLeagueFixture0 }"> </h15>
+                                    <h15>vs</h15>
+                                    <h15 th:utext="${ plLeagueFixture1 }"> </h15>
+                                    </div>
+                                    <div
+                                        class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <hr width = "90%" color = "gray">
+
+                                    <h15 th:utext="${ plLeagueFixture2 }"> </h15>
+                                    <h15>vs</h15>
+                                    <h15 th:utext="${ plLeagueFixture3 }"> </h15>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i
@@ -77,6 +108,7 @@
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-info shadow h-100 py-2">
+                    
                         <div class="slider">
                             <input type="radio" name="slide" id="slide1"
                                 checked> <input type="radio"
@@ -84,26 +116,22 @@
                                 type="radio" name="slide" id="slide3">
                             <input type="radio" name="slide" id="slide4">
                             <ul id="imgholder" class="imgs">
-                                <li>
-                                <h10 th:utext="${ newsTitle1 }"> </h10>
-                                <img th:src="${ newsImg1 }"
+                                <li><h10 th:utext="${ newsTitle1 }">
+                                    </h10> <img th:src="${ newsImg1 }"
                                     alt="group table"
                                     class="img-responsive img-thumbnail">
-                                    </li>
-                                    
-                                <li>
-                                <h10 th:utext="${ newsTitle2 }"> </h10>
-                                <img th:src="${ newsImg2 }"
+                                </li>
+
+                                <li><h10 th:utext="${ newsTitle2 }">
+                                    </h10> <img th:src="${ newsImg2 }"
                                     alt="group table"
                                     class="img-responsive img-thumbnail"></li>
-                                <li>
-                                <h10 th:utext="${ newsTitle3 }"> </h10>
-                                <img th:src="${ newsImg3 }"
+                                <li><h10 th:utext="${ newsTitle3 }">
+                                    </h10> <img th:src="${ newsImg3 }"
                                     alt="group table"
                                     class="img-responsive img-thumbnail"></li>
-                                <li>
-                                <h10 th:utext="${ newsTitle4 }"> </h10>
-                                <img th:src="${ newsImg4 }"
+                                <li><h10 th:utext="${ newsTitle4 }">
+                                    </h10> <img th:src="${ newsImg4 }"
                                     alt="group table"
                                     class="img-responsive img-thumbnail"></li>
                             </ul>
@@ -187,65 +215,91 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- NEWS SLIDE -->
-              <!--   <div clas="col-xl-7 col-lg-7s">
+                <!-- 시작 -->
+                <div class="col-xl-6 col-lg-4">
                     <div class="card shadow mb-4">
-                        Card Header - Dropdown
-                        <div
-                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6
-                                class="m-0 font-weight-bold text-primary">
-                                실시간 뉴스</h6>
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">조회수 베스트 게시글</h6>
                         </div>
-
-                        Card Body
-                        <div class="slider">
-                            <input type="radio" name="slide" id="slide1"
-                                checked> <input type="radio"
-                                name="slide" id="slide2"> <input
-                                type="radio" name="slide" id="slide3">
-                            <input type="radio" name="slide" id="slide4">
-                            <ul id="imgholder" class="imgs">
-                                <li>
-                                <h3 th:utext="${ newsTitle1 }"> </h3>
-                                <img th:src="${ newsImg1 }"
-                                    alt="group table"
-                                    class="img-responsive img-thumbnail">
-                                    </li>
-                                    
-                                <li>
-                                <h3 th:utext="${ newsTitle2 }"> </h3>
-                                <img th:src="${ newsImg2 }"
-                                    alt="group table"
-                                    class="img-responsive img-thumbnail"></li>
-                                <li>
-                                <h3 th:utext="${ newsTitle3 }"> </h3>
-                                <img th:src="${ newsImg3 }"
-                                    alt="group table"
-                                    class="img-responsive img-thumbnail"></li>
-                                <li>
-                                <h3 th:utext="${ newsTitle4 }"> </h3>
-                                <img th:src="${ newsImg4 }"
-                                    alt="group table"
-                                    class="img-responsive img-thumbnail"></li>
-                            </ul>
-                            <div class="bullets">
-                                <label for="slide1">&nbsp;</label> <label
-                                    for="slide2">&nbsp;</label> <label
-                                    for="slide3">&nbsp;</label> <label
-                                    for="slide4">&nbsp;</label>
+                        <div class="card-body">
+                            <div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>제목</th>
+                                            <th>게시판</th>
+                                            <th>작성시간</th>
+                                            <th>조회수</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="post : ${ list }">
+                                            <td th:text="${ post.id }"></td>
+                                            <td><a th:href="@{ /view/detail?id={id} (id = ${ post.id }) }"
+                                                th:text="${ post.title }"></a></td>
+                                            <td th:text="${ post.category }"></td>
+                                            <td
+                                                th:text="${ #temporals.format(post.modifiedTime, 'yyyy-MM-dd') }"></td>
+                                            <td th:text="${ post.clickCount }"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
-                        슬라이드 컨텐트
+                        </div>  
                     </div>
-                    슬라이드 카드 끝
-
-
-                </div> -->
-                <!-- End of news slide -->
-                <td th:utext="${ newsArticle }"><br></td>
-
+                </div>
+                
+                <!--  끝 -->
+                <div class="table-responsive">
+                    <table class="table" width = "400">
+                      <thead>
+                        <tr>
+                          <th scope="col" width="100" >순위</th>
+                          <th scope="col" >팀</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td class="noBorder">1</td>
+                          <td class="noBorder"><span th:utext="${ plLeagueTable0 }"></span></td>
+                          
+                        </tr>
+                        
+                        <tr>
+                          <td class="noBorder">2</td>
+                          <td class="noBorder"><span th:utext="${ plLeagueTable1 }"></span></td>
+                          
+                        </tr>
+                        <tr>
+                          <td class="noBorder">3</td>
+                          <td class="noBorder"><span th:utext="${ plLeagueTable2 }"></span></td>
+                          
+                        </tr>
+                        <tr>
+                          <td class="noBorder">4</td>
+                          <td class="noBorder"><span th:utext="${ plLeagueTable3 }"></span></td>
+                          
+                        </tr>
+                        <tr>
+                          <td class="noBorder">5</td>
+                          <td class="noBorder"><span th:utext="${ plLeagueTable4 }"></span></td>
+                          
+                        </tr>
+                        <tr>
+                          <td class="noBorder">6</td>
+                          <td class="noBorder"><span th:utext="${ plLeagueTable5 }"></span></td>
+                          
+                        </tr>
+                        <tr>
+                          <td class="noBorder">7</td>
+                          <td class="noBorder"><span th:utext="${ plLeagueTable6 }"></span></td>
+                          
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
             </div>
             <!--End of Row -->
 

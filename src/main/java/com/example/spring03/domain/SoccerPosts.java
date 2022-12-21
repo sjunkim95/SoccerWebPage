@@ -15,35 +15,47 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder 
+@Builder
 @Getter
 @ToString
 @Entity(name = "SOCCER_POSTS")
 @SequenceGenerator(name = "SOCCERPOSTS_SEQ_GEN", sequenceName = "SOCCERPOSTS_SEQ", initialValue = 1, allocationSize = 1)
 public class SoccerPosts extends BaseTimeEntity {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SOCCERPOSTS_SEQ_GEN")
 	private Integer id;
-	@Column(nullable = false )
+	
+	@Column(nullable = false)
 	private String title;
+	
 	@Column(nullable = false)
 	private String content;
+	
 	@Column(nullable = false)
 	private String author;
+	
 	@Column(columnDefinition = "integer default 0", nullable = false)
 	private Integer clickCount;
+	
+	@Column(columnDefinition = "integer default 0", nullable = false)
+	private Integer likeCount;
+	
+	@Column(columnDefinition = "integer default 0", nullable = false)
+	private Integer dislikeCount;
+	
 	@Column
     private Long filesId;
+	
 	@Column(nullable = false)
 	private String category;
 	
 	public SoccerPosts update(String title, String content, Long filesId) {
-        this.title = title;
-        this.content = content;
-        this.filesId = filesId;
-        
-        return this;
+		this.title = title;
+		this.content = content;
+		this.filesId = filesId;
+		
+		return this;
 	}
-
-
+	
 }
