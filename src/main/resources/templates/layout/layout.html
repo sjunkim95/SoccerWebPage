@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 
@@ -71,13 +72,13 @@
 
             <!-- 옆에 이미지 넣는다면 <i class="fas fa-fw fa-chart-area"></i> -->
             <!-- Nav Item - Charts -->
-            <li class="nav-item"><form th:action="@{ /view/list }"><input name="category" value="Notice" style="display:none;" />
-            <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
-            <span>공지사항</span></button></form>
-            </li>
             <li class="nav-item"><form th:action="@{ /view/list }">
             <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
             <span>전체 게시판</span></button></form>
+            </li>
+            <li class="nav-item"><form th:action="@{ /view/list }"><input name="category" value="Notice" style="display:none;" />
+            <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
+            <span>공지사항</span></button></form>
             </li>
             <li class="nav-item"><form th:action="@{ /view/list }"><input name="category" value="Free" style="display:none;" />
             <button style="background-color: transparent; border:none;" id="btnList" class="nav-link">
@@ -101,7 +102,8 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+            
+            <th:block sec:authorize="hasRole('ROLE_ADMIN')">
             <!-- Heading -->
             <div class="sidebar-heading">Addons</div>
 
@@ -118,21 +120,13 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item"
-                            th:href="@{ /view/login }">Login</a> <a
-                            class="collapse-item"
-                            th:href="@{/view/example}">example</a> <a
-                            class="collapse-item"
-                            th:href="forgot-password.html">Forgot
-                            Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" th:href="@{ /# }">404
-                            Page</a> <a class="collapse-item"
-                            th:href="@{ /# }">Blank Page</a>
+                         <a class="collapse-item"
+                            th:href="@{/view/noticeCreate?category=Notice}">공지사항 작성</a>
+                         <a class="collapse-item"
+                            th:href="@{ /member/list }">회원 목록</a>
                     </div>
                 </div></li>
-
+                </th:block>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -179,6 +173,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
+                            
+                            
                             <input type="text"
                                 class="form-control bg-light border-0 small"
                                 placeholder="Search for..."
@@ -195,38 +191,11 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#"
-                            id="searchDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> <i
-                                class="fas fa-search fa-fw"></i>
-                        </a> <!-- Dropdown - Messages -->
-                            <div
-                                class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form
-                                    class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text"
-                                            class="form-control bg-light border-0 small"
-                                            placeholder="Search for..."
-                                            aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button
-                                                class="btn btn-primary"
-                                                type="button">
-                                                <i
-                                                    class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                            
                         </li>
+                          
 
                         <!-- 로그인 -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -267,18 +236,9 @@
                             <div
                                 class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#"> <i
+                                <a class="dropdown-item" th:href="@{ /member/profile }"> <i
                                     class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a> <a class="dropdown-item" href="#">
-                                    <i
-                                    class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a> <a class="dropdown-item" href="#">
-                                    <i
-                                    class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"
                                     data-toggle="modal"
@@ -338,14 +298,13 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if
-                    you are ready to end your current session.</div>
+                <div class="modal-body">로그아웃을 완료하고 싶으면 "로그아웃" 버튼을 눌러주십시오.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button"
-                        data-dismiss="modal">Cancel</button>
+                        data-dismiss="modal">취소</button>
                     <a class="btn btn-primary"
                         sec:authorize="isAuthenticated()"
-                        th:href="@{ /member/logout }">Logout</a>
+                        th:href="@{ /member/logout }">로그아웃</a>
                 </div>
             </div>
         </div>

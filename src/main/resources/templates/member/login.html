@@ -43,8 +43,7 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1
-                                            class="h4 text-gray-900 mb-4">Welcome
-                                            Back!</h1>
+                                            class="h4 text-gray-900 mb-4">로그인 페이지</h1>
                                     </div>
                                     <form th:action="@{/member/login}"
                                         class="user" method="post">
@@ -60,14 +59,14 @@
                                                 name="username"
                                                 id="username"
                                                 aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="아이디 입력...">
                                         </div>
                                         <div class="form-group">
                                             <input type="password"
                                                 class="form-control form-control-user"
                                                 name="password"
                                                 id="password"
-                                                placeholder="Password">
+                                                placeholder="비밀번호 입력...">
                                         </div>
                                         <div class="form-group">
                                             <div
@@ -77,8 +76,7 @@
                                                     id="customCheck">
                                                 <label
                                                     class="custom-control-label"
-                                                    for="customCheck">Remember
-                                                    Me</label>
+                                                    for="customCheck">아이디 저장</label>
                                             </div>
                                         </div>
                                         <a> <input type="submit"
@@ -91,29 +89,22 @@
                                             class="btn btn-google btn-user btn-block">
                                             <i
                                             class="fab fa-google fa-fw"></i>
-                                            Login with Google
+                                            구글로 로그인하기
                                         </a> <a th:href="@{/#}"
                                             class="btn btn-facebook btn-user btn-block">
                                             <i
                                             class="fab fa-facebook-f fa-fw"></i>
-                                            Login with Facebook
-                                        </a> <a th:href="@{ /# }"
-                                            class="btn btn-kako btn-user btn-block">
-                                            <i
-                                            class="fab fa-kakao fa-fw"></i>
-                                            Login with Kakao
-                                        </a>
+                                            페이스북으로 로그인하기
+                                        </a> 
                                     </form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small"
-                                            th:href="@{ /# }">Forgot
-                                            Password?</a>
+                                            th:href="@{ /# }">비밀번호 찾기!</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small"
-                                            th:href="@{ /# }">Create
-                                            an Account!</a>
+                                            th:href="@{ /# }">회원정보가 없으신가요? 회원가입</a>
                                     </div>
                                 </div>
                             </div>

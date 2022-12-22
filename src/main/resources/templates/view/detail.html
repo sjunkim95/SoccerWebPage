@@ -9,34 +9,21 @@
     content="width=device-width, height=device-height, 
                          minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">     
-<style>
-div.left {
-    width: 70%;
-    float: left;
-}
 
-div.right {
-    width: 30%;
-    float: right;
-}
-
-</style>
 </head>
 
 <div layout:fragment="content">
-<div class="left">
     <section class="container">
 
         <div class="WritngWrap">
             <div class="WritngHeader">
-                <h2 class="title">
-                    상세보기 <span>
-                        <button class="btn btn-success" id="btnUpdate" 
-                            style="float: right">수정</button>
-                        <button class="btn btn-success" id="btnDelete"
-                            style="float: right">삭제</button>
-                    </span>
-                </h2>
+                <h2 class="title" style="display: inline-block;">상세보기</h2>
+                <div th:if="${ post.author } == ${ #authentication.name }" style="display: inline; float: right">
+                    <button class="btn btn-outline-danger" id="btnDelete"
+                        >삭제</button>
+                    <button class="btn btn-outline-success" id="btnUpdate" 
+                        >수정</button>
+                </div>
             </div>
         </div>
         <hr>
@@ -105,7 +92,7 @@ div.right {
     <div class="card my-4">
         <div class="card-body row">
             <div class="col-2">
-                <input type="text" class="form-control" id="writer" placeholder="user" />
+                <input type="text" class="form-control" id="writer" th:value="${ #authentication.name }" readonly/>
             </div>
             <div class="col-8">
                 <textarea rows="1" class="form-control" id="replyText" placeholder="댓글 작성"></textarea>
@@ -118,13 +105,9 @@ div.right {
     <!-- 댓글 리스트 영역 -->
     <hr />
     <div id="replies"></div>
-    </div>
     
-    <div class="right">
-        <p>출력되라</p>
-        <div class="container">
-        </div>
-    </div>
+    
+
     
     <!-- 수정 성공 modal -->
     <div id="createModal" class="modal" tabindex="-1">
@@ -150,6 +133,9 @@ div.right {
 <th:block layout:fragment="script" th:inline="javascript">
     <!-- Ajax를 사용하기 위한 axios 자바스크립트 라이브러리 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+    const loginUser = [[ ${ #authentication.name } ]];
+    </script>
     <script th:src="@{ /js/reply.js }"></script>
     
     <script>
@@ -198,7 +184,7 @@ div.right {
         let disLikebtn = document.querySelector('#dislikebtn');
         let input1 = document.querySelector('#input1');
         let input2 = document.querySelector('#input2');
-        
+        console.log("likebtn");
         
         likebtn.addEventListener('click', ()=>{
             axios.get(`/view/api/post/like?id=${postId}`)

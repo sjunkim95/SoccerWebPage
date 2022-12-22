@@ -115,6 +115,11 @@ public class SoccerPostsService {
 		log.info("dislikeCount(id={})", dislikeCount);
 		soccerPostsRepository.dislikeCount(dislikeCount);
 	}
-
+	
+	// 작성자 별 게시글
+	public List<SoccerPosts> readByAuthor(String author) {
+        log.info("readByAuthor(author = {})", author);
+        return soccerPostsRepository.findByAuthorContaining(author);
+    }
 
 }

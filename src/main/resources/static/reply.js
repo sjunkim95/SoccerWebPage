@@ -64,13 +64,13 @@
 		for(let r of data){
 		
 			str += `<li id="${r.id}" class="list-group-item">`
-                + '<span>'
-                + '<span style="font-size: middle">' + r.writer + '</span>'
+				+ '<span>'
+				+ '<span style="font-size: middle">' + r.writer + '</span>'
                 + '<span style="font-size: xx-small" class="mx-2">' + r.modifiedTime  + '</span>'
                 + '</span>'
-            if(r.writer == loginUser){
+        	if(r.writer == loginUser){
                str += `<button type="button" data-toggle="collapse" data-target=".updateReplyBox-${r.id}" class="bi bi-pencil-square my-1">` + '수정' + '</button>'
-                + `<button type="button" id="btnReplyDelete" class="bi bi-x-square mx-1 my-1" data-rid="${r.id}">` + '삭제' + '</button> ';
+                + `<button type="button" id="btnDelete" class="bi bi-x-square mx-1 my-1" data-rid="${r.id}">` + '삭제' + '</button> ';
                }
             str += `<p class="collapse updateReplyBox-${r.id} show">` + r.replyText + '</p>'
                 + `<form class="collapse updateReplyBox-${r.id}">`
@@ -82,8 +82,8 @@
                 + '</form>'
                 + '</li>'
                 + '</ul>'
-                + '</div>' 
-        }
+				+ '</div>' 
+		}
 		divReplies.innerHTML = str;
 		
 		// 수정 버튼들이 HTML 요소로 만들어진 이후에 수정 버튼에 이벤트 리스너를 등록 
@@ -95,7 +95,7 @@
 			});
 		});
 		
-		const deleteButtons = document.querySelectorAll('#btnReplyDelete');
+		const deleteButtons = document.querySelectorAll('#btnDelete');
 		deleteButtons.forEach(btn => {
 			btn.addEventListener('click', getReply);
 		});

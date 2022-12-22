@@ -14,6 +14,8 @@ public class SoccerPostsCreateDto {
 	private Long filesId;
 	private String category;
 	private Integer clickCount;
+	private Integer likeCount;
+	private Integer dislikeCount;
 	
 	public SoccerPosts toEntity() {
 		return SoccerPosts.builder()
@@ -22,6 +24,8 @@ public class SoccerPostsCreateDto {
 				.author(author)
 				.category(category)
 				.clickCount(0)
+				.likeCount(0)
+				.dislikeCount(0)
 				.filesId(filesId)
 				.build();
 	}

@@ -15,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,6 +73,14 @@ public class SoccerPostsController {
 		
 		model.addAttribute("category", category);
 	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/noticeCreate")
+    public void noticeCreate(Model model, String category) {
+        log.info("noticeCreate(category = {})", category);
+        
+        model.addAttribute("category", category);
+    }
 
 	@PostMapping("/create")
 	public String create(@RequestParam("file") MultipartFile files, String type, SoccerPostsCreateDto dto, RedirectAttributes attrs) {
@@ -215,7 +224,7 @@ public class SoccerPostsController {
 	// 게시글 검색하기
 		@GetMapping("/search")
 		public String search(String type, String keyword,
-				@PageableDefault(size = 5, sort = "id", direction = Direction.DESC) Pageable pageable, Model model) {
+				@PageableDefault(size = 1, sort = "id", direction = Direction.DESC) Pageable pageable, Model model) {
 			log.info("search(type={}, keyword={})", type, keyword);
 
 			Page<SoccerPosts> list = soccerPostsService.search(type, keyword, pageable);

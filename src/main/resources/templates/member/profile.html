@@ -44,14 +44,26 @@
                               
                                
                                     <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="email" th:value="${member.email}"  />
+                                    <label for="email" class="form-label">EMAIL</label>
+                                    <input type="email" class="form-control form-control-user" id="email" th:value="${member.email}" readonly />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                    <label for="createdTime" class="form-label">가입일자</label>
+                                    <input type="text" class="form-control form-control-user" id="createdTime" th:value="${ #temporals.format(member.createdTime, 'yyyy-MM-dd HH:mm:ss') }" readonly />
                                     </div>
                               
-                               
+                               <div class="form-group">
                                 <a th:href="@{/#}">
                                 <input type="button" id="btnSubmit" class="btn btn-primary btn-user btn-block"  value="확인">
                                      </a>
+                                </div>
                                 
+                                <div>
+                                <a th:href="@{/member/modifyPassword}">
+                                <input type="button" id="btnSubmit" class="btn btn-primary btn-user btn-block"  value="비밀번호 변경">
+                                     </a>
+                                     </div>
                             </form>
                            
                         </div>

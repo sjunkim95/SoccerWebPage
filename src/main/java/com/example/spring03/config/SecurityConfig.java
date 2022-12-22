@@ -27,8 +27,6 @@ import lombok.RequiredArgsConstructor;
 @Configuration // 스프링 부트 앱 환경 설정(configuration)을 자바 코드로 설정.
 public class SecurityConfig {
     
-    private final MemberSecurityService memberSecurityService;
-    
     @Bean // 스프링 컨텍스트에서 생성, 관리하는 객체 - 필요한 곳에 의존성 주입.
     // 암호화(복호화) 알고리즘 객체 -> Spring Security에서는 비밀번호는 반드시 암호화를 해야 함.
     public PasswordEncoder passwordEncoder() {
@@ -47,9 +45,13 @@ public class SecurityConfig {
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                 .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-            ;
-        ;
+                .invalidateHttpSession(true);
+        
+        http.authorizeHttpRequests()
+        .antMatchers("/view/create?category=Notice", "/member/list").hasRole("ADMIN")
+        .antMatchers("/view/**", "/api/**", "/member/modify/**", "/member/delete/**", "/member/detail/**").hasAnyRole("USER", "ADMIN")
+        .anyRequest().permitAll();
+        
         return http.build();
     }
     

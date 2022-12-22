@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://thymeleaf.org/extras/spring-security"
 	layout:decorate="~{ layout/layout }">
 
 <div layout:fragment="content">
@@ -13,25 +14,35 @@
 		<thead>
 			<tr>
 				<th>번호</th>
+                <th>게시판</th>
 				<th>제목</th>
 				<th>작성자</th>
 				<th>수정시간</th>
 				<th>조회수</th>
+                <th>좋아요</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="post : ${ list }">
 				<td th:text="${ post.id }"></td>
+                <td th:text="${ post.category }"></td>
 				<td><a th:href="@{ /view/detail?id={id} (id = ${ post.id }) }"
 					th:text="${ post.title }"></a></td>
 				<td th:text="${ post.author }"></td>
 				<td
 					th:text="${ #temporals.format(post.modifiedTime, 'yyyy-MM-dd HH:mm') }"></td>
 				<td th:text="${ post.clickCount }"></td>
+                <td th:text="${ post.likeCount }"></td>
 			</tr>
 		</tbody>
 	</table>
-    <div>
+    <div th:if="${ category } == Notice" sec:authorize="hasRole('ADMIN')">
+        <form th:action="@{ /view/noticeCreate }">
+            <input type="hidden" name="category" th:value="${ category }" />
+            <button class="btn btn-success" type="submit" style="float: right"><span>글쓰기</span></button>
+        </form>
+    </div>
+    <div th:if="${ category } != Notice" sec:authorize="hasAnyRole('USER', 'ADMIN')">
         <form th:action="@{ /view/create }">
             <input type="hidden" name="category" th:value="${ category }" />
             <button class="btn btn-success" type="submit" style="float: right"><span>글쓰기</span></button>

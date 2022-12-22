@@ -29,6 +29,9 @@ public interface SoccerPostsRepository extends JpaRepository<SoccerPosts, Intege
     // 조회수 내림차순 검색
     List<SoccerPosts> findByClickCountIsNotNullOrderByClickCountDesc();
     
+    //특정 아이디 게시글 목록
+    List<SoccerPosts> findByAuthorContaining(String author);
+    
     // 조회수 증가
     @Modifying
     @Query
@@ -60,7 +63,7 @@ public interface SoccerPostsRepository extends JpaRepository<SoccerPosts, Intege
     @Query(
             "select s from SOCCER_POSTS s "
             + "where s.clickCount > 0 "
-            + "AND ROWNUM <= 10 "
+            + "AND ROWNUM <= 7 "
             + "order by s.clickCount desc")
     List<SoccerPosts> ClickCountOrder();
     
