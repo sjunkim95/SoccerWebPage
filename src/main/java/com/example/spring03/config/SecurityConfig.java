@@ -49,7 +49,7 @@ public class SecurityConfig {
         
         http.authorizeHttpRequests()
         .antMatchers("/view/create?category=Notice", "/member/list").hasRole("ADMIN")
-        .antMatchers("/view/**", "/api/**", "/member/modify/**", "/member/delete/**", "/member/detail/**").hasAnyRole("USER", "ADMIN")
+        .antMatchers("/view/**", "/api/**", "/member/modify/**", "/member/delete/**", "/member/detail/**").authenticated()
         .anyRequest().permitAll();
         
         return http.build();

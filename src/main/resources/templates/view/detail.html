@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{ layout/layout }">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{ layout/layout }">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,45 +13,46 @@
 </head>
 
 <div layout:fragment="content">
-    <section class="container">
 
-        <div class="WritngWrap">
-            <div class="WritngHeader">
-                <h2 class="title" style="display: inline-block;">상세보기</h2>
-                <div th:if="${ post.author } == ${ #authentication.name }" style="display: inline; float: right">
-                    <button class="btn btn-outline-danger" id="btnDelete"
-                        >삭제</button>
-                    <button class="btn btn-outline-success" id="btnUpdate" 
-                        >수정</button>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="WritngContainer">
-            <div class="Writngeditor">
-                <div class="ArticleWritingTitle">
-                    <div class="row">
-                        <div class="column_title">
-                            <div class="FormSelectBox menu_candidates_selectbox">
-                                <div class="FormSelectButton">
-                                    <input
+	<section class="container">
+
+		<div class="WritngWrap">
+			<div class="WritngHeader">
+				<h2 class="title" style="display: inline-block;">상세보기</h2>
+				<div th:if="${ post.author } == ${ #authentication.name }" style="display: inline; float: right">
+					<button class="btn btn-outline-danger" id="btnDelete"
+						>삭제</button>
+					<button class="btn btn-outline-success" id="btnUpdate" 
+						>수정</button>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="WritngContainer">
+			<div class="Writngeditor">
+				<div class="ArticleWritingTitle">
+					<div class="row">
+						<div class="column_title">
+							<div class="FormSelectBox menu_candidates_selectbox">
+								<div class="FormSelectButton">
+									<input
                                         class="form-select form-select-lg mb-3 form-control mx-1"
                                         aria-label=".form-select-lg example" th:value="${ post.category }"
                                         style="width: 580px; font-size: 15px;" readonly />
-                                    <div class="row">
-                                        <form id="formModify">
-                                            <div style="display: none">
-                                                <input id="id" name="id" class="form-control" th:value="${ post.id }" readonly />
-                                            </div>
-                                            <div class="FlexableTextArea">
-                                                <textarea class="textarea_input form-control mx-3" id="title" name="title"
-                                                    style="width: 1100px; height: 40px; font-size: 15px;" th:text="${post.title}" readonly></textarea>
-                                            </div>
-                                            <div class="FlexableTextArea my-3">
-                                                <textarea class="textarea_input form-control mx-3" id="content" name="content"
-                                                    style="width: 1100px; height: 500px; font-size: 15px;" th:text="${post.content}" readonly></textarea>
-                                            </div>
-                                            <div class="my-2 mx-3">
+									<div class="row">
+										<form id="formModify">
+											<div style="display: none">
+												<input id="id" name="id" class="form-control" th:value="${ post.id }" readonly />
+											</div>
+											<div class="FlexableTextArea">
+												<textarea class="textarea_input form-control mx-3" id="title" name="title"
+													style="width: 1100px; height: 40px; font-size: 15px;" th:text="${post.title}" readonly></textarea>
+											</div>
+											<div class="FlexableTextArea my-3">
+												<textarea class="textarea_input form-control mx-3" id="content" name="content"
+													style="width: 1100px; height: 500px; font-size: 15px;" th:text="${post.content}" readonly></textarea>
+											</div>
+											<div class="my-2 mx-3">
                                                 <label for="author" class="form-label">작성자</label> 
                                                 <input id="author" class="form-control" type="text" name="author" th:value="${post.author}" readOnly /> 
                                                 <a>[[${#temporals.format(post.modifiedTime, 'yyyy-MM-dd HH:MM:ss')}]]</a>
@@ -61,30 +62,30 @@
                                                 <strong>첨부파일 : </strong>
                                                     <a class="card-text" th:href="@{'/view/download/' + ${post.filesId}}" th:text="${filename}"></a>
                                           </div>
-                                        </form>
-                                        <div class="voting"
-                                            style="margin-left: auto; margin-right: auto">
-                                            <button class="likebtn" id="likebtn" name="likeCount"
-                                                style="background: none; border: none">
-                                                <i class="fa fa-thumbs-up"></i>
-                                            </button>
-                                            <input type="number" id="input1" th:value="${post.likeCount}"
-                                                style="width: 50px; pointer-events: none; border: none; background: none" />
-                                            <button id="dislikebtn" name="dislikeCount"
-                                                style="background: none; border: none">
-                                                <i class="fa fa-thumbs-down"></i>
-                                            </button>
-                                            <input type="number" id="input2" th:value="${post.dislikeCount}"
-                                                style="width: 50px; pointer-events: none; border: none; background: none" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+										</form>
+										<div class="voting"
+											style="margin-left: auto; margin-right: auto">
+											<button class="likebtn" id="likebtn" name="likeCount"
+												style="background: none; border: none">
+												<i class="fa fa-thumbs-up"></i>
+											</button>
+											<input type="number" id="input1" th:value="${post.likeCount}"
+												style="width: 50px; pointer-events: none; border: none; background: none" />
+											<button id="dislikebtn" name="dislikeCount"
+												style="background: none; border: none">
+												<i class="fa fa-thumbs-down"></i>
+											</button>
+											<input type="number" id="input2" th:value="${post.dislikeCount}"
+												style="width: 50px; pointer-events: none; border: none; background: none" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
     </section>
     
@@ -105,10 +106,9 @@
     <!-- 댓글 리스트 영역 -->
     <hr />
     <div id="replies"></div>
-    
+   
     
 
-    
     <!-- 수정 성공 modal -->
     <div id="createModal" class="modal" tabindex="-1">
             <div class="modal-dialog">
@@ -136,7 +136,6 @@
     <script>
     const loginUser = [[ ${ #authentication.name } ]];
     </script>
-    <script th:src="@{ /js/reply.js }"></script>
     
     <script>
     const formModify = document.querySelector('#formModify');
@@ -181,24 +180,25 @@
         });
      
      let likebtn = document.querySelector('#likebtn');
-        let disLikebtn = document.querySelector('#dislikebtn');
-        let input1 = document.querySelector('#input1');
-        let input2 = document.querySelector('#input2');
-        console.log("likebtn");
-        
-        likebtn.addEventListener('click', ()=>{
-            axios.get(`/view/api/post/like?id=${postId}`)
-                .then(resp => {
-                    input1.value = parseInt(input1.value) + 1;
-                });
-        });
-        
-        disLikebtn.addEventListener('click', ()=>{
-            axios.get(`/view/api/post/dislike?id=${postId}`)
-                .then(resp => {
-                    input2.value = parseInt(input2.value) + 1;
-                });
-        });
+		let disLikebtn = document.querySelector('#dislikebtn');
+		let input1 = document.querySelector('#input1');
+		let input2 = document.querySelector('#input2');
+		
+		
+		likebtn.addEventListener('click', ()=>{
+			axios.get(`/view/api/post/like?id=${postId}`)
+				.then(resp => {
+					input1.value = parseInt(input1.value);
+				});
+		});
+		
+		disLikebtn.addEventListener('click', ()=>{
+			axios.get(`/view/api/post/dislike?id=${postId}`)
+				.then(resp => {
+					input2.value = parseInt(input2.value);
+				});
+		});
     </script>
+    <script th:src="@{ /js/reply.js }"></script>
 </th:block>
 </html>

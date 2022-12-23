@@ -270,6 +270,12 @@ public class HomeController {
                 model.addAttribute("transferTitle3", transferTitle.get(3).text());
           }
           
+          Elements transferLink = document7.select("div.poster-wrapper > a");
+          
+          for (int j = 0; j < transferLink.size(); j++) {
+                model.addAttribute("transferLink1", transferLink.get(0).attr("abs:href"));
+          }
+          
           // 프리미어리그 뉴스 소식
 //          final String transferURL = "https://www.goal.com/kr/%ED%94%84%EB%A6%AC%EB%AF%B8%EC%96%B4%EB%A6%AC%EA%B7%B8/2kwbbcootiqqgmrzs6o5inle5s";
 //          Connection conn7 = Jsoup.connect(transferURL);
